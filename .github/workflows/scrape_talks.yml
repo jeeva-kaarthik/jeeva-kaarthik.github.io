@@ -7,7 +7,7 @@ permissions:
 
 on:
   push:
-    branches: [ master ]           # <-- change to [ main ] if that's your default
+    branches: [ master ]           # <-- change to main if needed
     paths:
       - 'talks/**'
       - '_talks/**'
@@ -21,16 +21,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0           # full history so rebase works
-          ref: master              # <-- change to main if needed
+          fetch-depth: 0
+          ref: master              # <-- change to main
 
-      # (A) Ensure we're in sync with the latest remote BEFORE generating changes
-      - name: Sync with remote
+      # Always start from the latest remote state
+      - name: Sync to latest remote
         run: |
           git fetch origin master
-          git checkout master
-          # Fast-forward to remote; fail if not possible (prevents diverged history)
-          git merge --ff-only origin/master
+          git reset --hard origin/master
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -52,11 +50,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      # (B) Commit, rebase on top of the newest remote, then push
       - name: Commit and push automated updates
         run: |
           git add -A
           git commit -m "Automated update of talk locations" || echo "No changes"
-          # Rebase our commit(s) on top of remote to avoid non-fast-forward errors
-          git pull --rebase origin master || true
-          git push origin HEAD:master
+          # Safe-force in case someone pushed during this run
+          git push --force-with-lease origin HEAD:master
