@@ -11,9 +11,8 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.Phys. in Physics, University of Oxford, 2029 (expected)
+* High School Diploma, Honours in Mathematics & Physics, NUS High School of Math & Science, 2022
 
 Work experience
 ======
@@ -28,7 +27,7 @@ Work experience
   * Supervisor: Professor Hub
 
 * Summer 2015: Research Assistant
-  * GitHub University
+  * National University of Singapore
   * Duties included: Tagging issues
   * Supervisor: Professor Git
   
