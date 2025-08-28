@@ -7,12 +7,17 @@ permissions:
 
 on:
   push:
-    branches: [ master ]           # <-- change to main if needed
+    branches: [ master ]           # <-- change to main if your default branch is main
     paths:
       - 'talks/**'
       - '_talks/**'
       - 'talkmap.ipynb'
   workflow_dispatch:
+
+# Prevent two runs from racing each other
+concurrency:
+  group: scrape-talks-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -22,13 +27,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: master              # <-- change to main
+          ref: master              # <-- change to main if needed
 
-      # Always start from the latest remote state
+      # Always start from *exactly* the latest remote state
       - name: Sync to latest remote
         run: |
           git fetch origin master
           git reset --hard origin/master
+          git status
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -52,7 +58,10 @@ jobs:
 
       - name: Commit and push automated updates
         run: |
+          set -e
           git add -A
           git commit -m "Automated update of talk locations" || echo "No changes"
-          # Safe-force in case someone pushed during this run
-          git push --force-with-lease origin HEAD:master
+          # Rebase in case someone pushed during this run
+          git pull --rebase origin master || true
+          # Push; if rejected due to a race, safe-force with lease
+          git push origin HEAD:master || git push --force-with-lease origin HEAD:master
