@@ -1,6 +1,5 @@
 name: Scrape Talk Locations
 
-# Allow this workflow to commit back and (optionally) deploy
 permissions:
   contents: write
   pages: write
@@ -8,25 +7,30 @@ permissions:
 
 on:
   push:
-    branches: [ main ]   # <-- change to [ master ] if that's your default
+    branches: [ master ]           # <-- change to [ main ] if that's your default
     paths:
       - 'talks/**'
       - '_talks/**'
       - 'talkmap.ipynb'
-  workflow_dispatch:      # allow manual runs
-  # schedule:
-  #   - cron: '0 3 * * 1'   # run Mondays at 03:00 UTC (optional)
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0              # needed if we create commits
-          # persist-credentials defaults to true (keep it that way)
+          fetch-depth: 0           # full history so rebase works
+          ref: master              # <-- change to main if needed
+
+      # (A) Ensure we're in sync with the latest remote BEFORE generating changes
+      - name: Sync with remote
+        run: |
+          git fetch origin master
+          git checkout master
+          # Fast-forward to remote; fail if not possible (prevents diverged history)
+          git merge --ff-only origin/master
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -48,8 +52,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+      # (B) Commit, rebase on top of the newest remote, then push
       - name: Commit and push automated updates
         run: |
           git add -A
           git commit -m "Automated update of talk locations" || echo "No changes"
-          git push origin HEAD:main   # <-- change to HEAD:master if needed
+          # Rebase our commit(s) on top of remote to avoid non-fast-forward errors
+          git pull --rebase origin master || true
+          git push origin HEAD:master
