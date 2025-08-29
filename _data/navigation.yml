@@ -22,9 +22,6 @@ main:
     
   - title: "Notes & Resources"
     url: /resources/
-
-  - title: "Writing"
-    url: /resources/
     
   - title: "Guide"
     url: /markdown/
