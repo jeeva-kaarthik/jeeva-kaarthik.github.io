@@ -12,8 +12,8 @@ site_theme               : "default" # Currently available options are "default"
 title                    : "Jeeva Kaarthik"
 title_separator          : "-"
 name                     : &name "Your Name"
-description              : &description "This is my personal website. Here, you see will many things that I find very interesting - mostly Physics!"
-url                      : https://jeeva-kaarthik.github.io # the base hostname & protocol for your site e.g. "https://jeeva-kaarthik.github.io" or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
+description              : &description "This is my personal website. Here, you see will many things that I find very interesting - mostly notes, blogs and papers in Physics!"
+url                      : "https://jeeva-kaarthik.github.io" # the base hostname & protocol for your site e.g. "https://jeeva-kaarthik.github.io" or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "academicpages/academicpages.github.io"
 
@@ -22,8 +22,8 @@ repository               : "academicpages/academicpages.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
-  name             : "Jeevakaarthik"
+  avatar           : "images/profile.png"
+  name             : "Jeeva Kaarthik"
   pronouns         : # example: "he"  
   bio              : #
   location         : "Singapore"
