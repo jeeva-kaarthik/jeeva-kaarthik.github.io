@@ -12,6 +12,7 @@ redirect_from:
 Education
 ======
 * M.Phys. Physics, University of Oxford (New College) - 2029
+* Mathematics (Non-Graduating Programme), National University of Singapore - 2022
 * Diploma (High Disctintion) with Honours in Mathematics & Physics, NUS High School of Math & Science - 2022
 
 Work experience
