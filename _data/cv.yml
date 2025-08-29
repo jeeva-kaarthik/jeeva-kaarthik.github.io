@@ -1,0 +1,36 @@
+- title: Education
+  type: time_table
+  contents:
+    - title: BSc in Physics
+      institution: Your University
+      year: 2025
+      description:
+        - GPA: 4.0/4.0
+        - Thesis: Fun with Black Holes
+
+- title: Research Experience
+  type: time_table
+  contents:
+    - title: Undergraduate Researcher
+      institution: Quantum Lab, Your University
+      year: 2024–2025
+      description:
+        - Worked on $\psi$ and $H$… (MathJax is fine in content)
+
+- title: Publications
+  type: list
+  contents:
+    - "J. Kaarthik, A. Coauthor. *Quantum Widgets Under Stress*. Phys. Interesting (2025). DOI: 10.xxxx/xxxx"
+
+- title: Skills
+  type: map
+  contents:
+    - name: Programming
+      value: Python, Julia, C++
+    - name: Tools
+      value: Mathematica, LaTeX, Git
+
+- title: Awards
+  type: list
+  contents:
+    - Gold Medal, Physics Dept (2024)
