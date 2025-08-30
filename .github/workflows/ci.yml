@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: write     # Allow the bot to commit and push changes back to the repo
+  pages: write        # Allow the bot to deploy to GitHub Pages
+  id-token: write     # Allow the bot to use OIDC for deployment
 
 jobs:
   build:
@@ -34,11 +34,10 @@ jobs:
         bundle exec jekyll build
 
     - name: Upload Jekyll site artifact
-      uses: actions/upload-artifact@v3  # Change to v3
+      uses: actions/upload-artifact@v3
       with:
         name: github-pages
-        path: _site/   # Path to the built Jekyll site (this should be the folder where Jekyll outputs your built site)
-
+        path: _site/
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
