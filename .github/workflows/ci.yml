@@ -34,10 +34,11 @@ jobs:
         bundle exec jekyll build
 
     - name: Upload Jekyll site artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # Change to v3
       with:
         name: github-pages
-        path: _site/
+        path: _site/   # Path to the built Jekyll site (this should be the folder where Jekyll outputs your built site)
+
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
