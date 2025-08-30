@@ -3,12 +3,17 @@ name: Build and Deploy Site
 on:
   push:
     branches:
-      - main # Make sure it's the correct branch
+      - main  # Make sure it's the correct branch
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write     # Allow the bot to commit and push changes back to the repo
+      pages: write        # Allow the bot to deploy to GitHub Pages
+      id-token: write     # Allow the bot to use OIDC for deployment
 
     steps:
     - uses: actions/checkout@v2
