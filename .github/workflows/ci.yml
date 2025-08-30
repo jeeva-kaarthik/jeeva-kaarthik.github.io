@@ -3,20 +3,21 @@ name: Build and Deploy Site
 on:
   push:
     branches:
-      - main  # Ensure you're working on the correct branch
+      - main
   workflow_dispatch:
 
 permissions:
-  contents: write     # Allow the bot to commit and push changes to the repo
-  pages: write        # Allow the bot to deploy to GitHub Pages
-  id-token: write     # Allow the bot to request ID tokens for authentication
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -32,5 +33,13 @@ jobs:
       run: |
         bundle exec jekyll build
 
+    - name: Upload Jekyll site artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: github-pages
+        path: _site/
+
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
+      with:
+        artifact_name: github-pages
