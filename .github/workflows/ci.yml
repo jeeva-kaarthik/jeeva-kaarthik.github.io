@@ -34,11 +34,11 @@ jobs:
         bundle exec jekyll build
 
     - name: Upload Jekyll site artifact
-      uses: actions/upload-artifact@v4  # Update to v4
+      uses: actions/upload-artifact@v4
       with:
         name: github-pages
         path: _site/
-        
+
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
       with:
