@@ -4,7 +4,7 @@ author_profile: true
 title: "Welcome to My Physics Website"
 ---
 
-# Hi, I’m Jeeva! 👋
+# Hi, I’m Jeeva!👋
 
 I’m a physics student at the University of Oxford. Welcome to my personal site where I share my **CV**, **research**, and a **blog** where I write about the coolest physics and math topics that excite me.
 
