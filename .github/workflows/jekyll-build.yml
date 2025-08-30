@@ -30,7 +30,7 @@ jobs:
 
     - name: Build site with Jekyll
       run: |
-        bundle exec jekyll build
+        bundle exec jekyll build  # This will generate the _site/ directory
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
